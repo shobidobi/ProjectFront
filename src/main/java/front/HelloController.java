@@ -5,11 +5,14 @@ import Logic.Tile;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -43,9 +46,17 @@ public class HelloController {
     @FXML
     private Button welcomeText;
     Deck deck=new Deck();
+    Stage stage;
+    Scene_Manager sceneManager;
 
     DraggableMaker draggableMaker = new DraggableMaker();
 
+    public HelloController(Scene_Manager sceneManager) {
+        this.sceneManager = sceneManager;
+    }
+
+    public HelloController() {
+    }
 
 
     @FXML
@@ -88,9 +99,21 @@ public class HelloController {
         imageView.setY(480);
         imageView.setFitHeight(62);
         imageView.setFitWidth(52);
+        System.out.println(imageView.getId());
         the_game.getChildren().add(imageView);
         draggableMaker.makeDraggable(imageView);
         System.out.println("jgk");
         return imageView;
+    }
+
+    public void show() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        sceneManager.getStage().setScene(scene);
+        sceneManager.getStage().show();
+    }
+
+    public void setSceneManager(Scene_Manager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 }

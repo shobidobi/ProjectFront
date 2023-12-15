@@ -32,7 +32,7 @@ public class Tile {
     }
     public ImageView getImages() {
         String colorS="",numberS;
-        String s="file:///C:\\Users\\ariel\\IdeaProjects\\loginProject\\src\\main\\java\\images\\";
+        String s="file:///C:\\Users\\ariel\\IdeaProjects\\javafx-project\\javafx\\src\\main\\resources\\front\\images\\";
         switch (color){
             case red:
                 colorS=Color.red.name();

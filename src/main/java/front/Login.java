@@ -15,11 +15,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Login  {
+public class Login {
     @FXML
     private AnchorPane Log;
     @FXML
@@ -57,6 +59,16 @@ public class Login  {
     @FXML
     private Button Close;
     Stage stage;
+    @FXML
+    private Button SendEmail;
+    @FXML
+    private CheckBox forgot_password;
+    @FXML
+    private TextField emailF;
+
+    @FXML
+    private Text emailT;
+
 
     public void setSceneManager(Scene_Manager sceneManager) {
         this.sceneManager = sceneManager;
@@ -72,43 +84,49 @@ public class Login  {
         this.stage = stage2;
     }
 
-    public Login( Scene_Manager sceneManager) {
+    public Login(Scene_Manager sceneManager) {
         this.sceneManager = sceneManager;
     }
 
     @FXML
     public void initialize() {
-        Log.setMaxSize(408,544);
-
+        Log.setMaxSize(408, 544);
     }
+
+    /**
+     * @param event show the password
+     */
     @FXML
     void ShowHiddenPassword(ActionEvent event) {
-        if(ifShow.isSelected()){
+        if (ifShow.isSelected()) {
             showPass.setText(passwordF.getText());
             showPass.setVisible(true);
             passwordF.setVisible(false);
-        }
-        else{
+        } else {
             passwordF.setText(showPass.getText());
             showPass.setVisible(false);
             passwordF.setVisible(true);
         }
     }
+
+    /**
+     * @param event click the sign in button
+     * @throws IOException
+     * the function are used to check the username and password with the server
+     */
     @FXML
     void Sign_in(MouseEvent event) throws IOException {
-        String userName=U_N_F.getText();
-        String password=passwordF.getText();
-        TryApi api=new TryApi();
+        String userName = U_N_F.getText();
+        String password = passwordF.getText();
+        TryApi api = new TryApi();
 
-        if (userName.isEmpty()||password.isEmpty()){
+        if (userName.isEmpty() || password.isEmpty()) {
             System.out.println("empty");
-        }
-        else {
-            if (!(isValidString(userName)&&isValidString(password))){
+        } else {
+            if (!(isValidString(userName) && isValidString(password))) {
                 System.out.println("not valid");
-            }
-            else {
-                if (api.test3(userName,password)){
+            } else {
+                if (api.test3(userName, password)) {
                     sceneManager.showScene2();
                 }
 
@@ -120,32 +138,110 @@ public class Login  {
 
         }
     }
+
+    /**
+     * @param input the string to be checked
+     * @return true if the string is valid, false if not
+     */
     private boolean isValidString(String input) {
         String regex = "^[a-zA-Z0-9]+$";
 
         Pattern pattern = Pattern.compile(regex);
 
         Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()){
+        if (matcher.matches()) {
             System.out.println("valid");
         }
         return matcher.matches();
     }
+
+    /**
+     * @param event close the window
+     */
     @FXML
     void cancel_form(MouseEvent event) {
         System.exit(0);
     }
 
-    public void show() throws IOException {
-        FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
-        fxmlLoader1.setController(this);
-
-        Parent root = fxmlLoader1.load();
-        Scene scene = new Scene(root);
-        //FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
-//        Scene scene = new Scene(fxmlLoader1.load());
-        sceneManager.getStage().setTitle("Hello!");
-        sceneManager.getStage().setScene(scene);
-        sceneManager.getStage().show();
+    @FXML
+    void SendEmail(MouseEvent event) throws IOException {
+        requestCode(emailF.getText());
+        sceneManager.showScene4();
     }
+
+    @FXML
+    void showEmailDialog(ActionEvent event) {
+        if (forgot_password.isSelected()) {
+            emailF.setVisible(true);
+            emailT.setVisible(true);
+            SendEmail.setVisible(true);
+        } else {
+            emailF.setVisible(false);
+            emailT.setVisible(false);
+            SendEmail.setVisible(false);
+        }
+    }
+
+    @FXML
+    void Sign_UP_b(MouseEvent event) throws IOException {
+        sceneManager.showScene3();
+    }
+
+    private  int requestCode(String email) throws IOException {
+        try {
+            URL url = new URL("http://localhost:8080/generateCode");  // Replace with your server URL
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // Build the request body
+            String postData = "email=" + email;
+            sceneManager.getScene4().setEmail(email);
+            // Write the data to the output stream
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = postData.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+
+            // Read the response content
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                StringBuilder responseBody = new StringBuilder();
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    responseBody.append(line);
+                }
+
+                // Print the response status and body
+                System.out.println("Response Code: " + responseCode);
+                System.out.println("Response Body: " + responseBody.toString());
+                sceneManager.getScene4().setCode(responseBody.toString());
+                return Integer.parseInt(responseBody.toString());
+            }
+        } catch (ProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void show () throws IOException {
+            FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+            fxmlLoader1.setController(this);
+
+            Parent root = fxmlLoader1.load();
+            Scene scene = new Scene(root);
+            sceneManager.getStage().setTitle("Hello!");
+            sceneManager.getStage().setScene(scene);
+            sceneManager.getStage().show();
+        }
 }
+

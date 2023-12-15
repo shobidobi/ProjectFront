@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Log" maxHeight="556.0" maxWidth="408.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="front.Login">
+<AnchorPane fx:id="Log" maxHeight="556.0" maxWidth="408.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="background" fitHeight="544.0" fitWidth="556.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,7 +24,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Text fx:id="Title" layoutX="94.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to game" textAlignment="CENTER" wrappingWidth="208.5367431640625">
+      <Text fx:id="Title" layoutX="94.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to game" textAlignment="CENTER" wrappingWidth="208.5367431640625">
          <font>
             <Font size="24.0" />
          </font>
@@ -34,7 +34,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="SignUp" layoutX="159.0" layoutY="422.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="77.0" text="SIGN-UP">
+      <Button fx:id="SignUp" layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onMouseClicked="#Sign_UP_b" prefHeight="40.0" prefWidth="77.0" text="SIGN-UP">
          <font>
             <Font name="Lucida Sans Demibold Italic" size="12.0" />
          </font></Button>
@@ -42,11 +42,11 @@
          <font>
             <Font name="Lucida Sans Demibold Italic" size="12.0" />
          </font></Button>
-      <Text fx:id="User_name_text" layoutX="32.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
+      <Text fx:id="User_name_text" layoutX="32.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
          <font>
             <Font name="Aharoni Bold" size="14.0" />
          </font></Text>
-      <Text fx:id="Password_text" layoutX="35.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text fx:id="Password_text" layoutX="35.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font name="Aharoni Bold" size="14.0" />
          </font>
@@ -66,15 +66,15 @@
                </stops>
             </RadialGradient>
          </stroke></Text>
-      <PasswordField fx:id="passwordF" layoutX="128.0" layoutY="162.0" prefHeight="26.0" prefWidth="149.0" />
-      <TextField fx:id="U_N_F" layoutX="130.0" layoutY="91.0" prefHeight="26.0" prefWidth="149.0" />
+      <PasswordField fx:id="passwordF" layoutX="128.0" layoutY="109.0" prefHeight="26.0" prefWidth="149.0" />
+      <TextField fx:id="U_N_F" layoutX="130.0" layoutY="61.0" prefHeight="26.0" prefWidth="149.0" />
       <Text fontSmoothingType="LCD" layoutX="209.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="One of the details is incorrect" visible="false" wrappingWidth="208.5367431640626">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="showPass" layoutX="128.0" layoutY="162.0" prefHeight="26.0" prefWidth="149.0" visible="false" />
-      <CheckBox fx:id="ifShow" layoutX="289.0" layoutY="165.0" mnemonicParsing="false" onAction="#ShowHiddenPassword" text="Show password" textFill="#4f7b8f">
+      <TextField fx:id="showPass" layoutX="128.0" layoutY="109.0" prefHeight="26.0" prefWidth="149.0" visible="false" />
+      <CheckBox fx:id="ifShow" layoutX="289.0" layoutY="114.0" mnemonicParsing="false" onAction="#ShowHiddenPassword" text="Show password" textFill="#4f7b8f">
          <font>
             <Font name="Hadassah Friedlaender Bold" size="12.0" />
          </font></CheckBox>
@@ -83,5 +83,37 @@
             <Font name="Lucida Sans Demibold Italic" size="12.0" />
          </font>
       </Button>
+      <CheckBox fx:id="forgot_password" layoutX="148.0" layoutY="139.0" mnemonicParsing="false" onAction="#showEmailDialog" text="forgot password" textFill="#4f7b8f">
+         <font>
+            <Font name="Hadassah Friedlaender Bold" size="12.0" />
+         </font>
+      </CheckBox>
+      <Text fx:id="emailT" layoutX="38.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" visible="false">
+         <font>
+            <Font name="Aharoni Bold" size="14.0" />
+         </font>
+         <stroke>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </stroke>
+      </Text>
+      <Button fx:id="SendEmail" layoutX="294.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#SendEmail" prefHeight="26.0" prefWidth="52.0" text="Send" visible="false">
+         <font>
+            <Font name="Lucida Sans Demibold Italic" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="emailF" layoutX="131.0" layoutY="162.0" prefHeight="26.0" prefWidth="149.0" visible="false" />
    </children>
 </AnchorPane>

@@ -17,13 +17,20 @@ public class HelloApplication extends Application {
 //        stage.setTitle("Hello!");
 ////        stage.setMaxHeight(544);
 ////        stage.setMaxWidth(408);
-//        stage.setScene(scene);
+        //stage.setScene(scene);
         Login login = new Login();
         HelloController helloController = new HelloController();
-        Scene_Manager sceneManager = new Scene_Manager(stage, login, helloController);
+        Register register = new Register();
+        ForgotPassword forgotPassword = new ForgotPassword();
+        Scene_Manager sceneManager = new Scene_Manager(stage, login, helloController, register, forgotPassword);
         sceneManager.showScene1();
 
+
         //stage.show();
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("register.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load());
+//        stage.setScene(scene);
+//        stage.show();
     }
 
     public static void main(String[] args) {

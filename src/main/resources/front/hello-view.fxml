@@ -30,7 +30,7 @@
             <Image url="@images/board_Le_Ri.png" />
          </image>
       </ImageView>
-      <Button fx:id="welcomeText" layoutX="436.0" layoutY="348.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="welcomeText" layoutX="436.0" layoutY="348.0" onMouseClicked="#gps" mnemonicParsing="false" text="Button" />
       <ImageView fx:id="mainBoard" fitHeight="141.0" fitWidth="617.0" layoutX="168.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/MyBoard.png" />
@@ -58,3 +58,73 @@
       </ImageView>
    </children>
 </AnchorPane>
+<!-- hello-view.fxml -->
+
+<!--<AnchorPane fx:id="the_game" minHeight="-Infinity" minWidth="-Infinity"-->
+<!--            xmlns="http://javafx.com/javafx/17.0.2-ea"-->
+<!--            xmlns:fx="http://javafx.com/fxml/1"-->
+<!--            fx:controller="front.HelloController">-->
+
+<!--   <children>-->
+<!--      <ImageView fitHeight="633.0" fitWidth="944.0" layoutX="-30.0" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/MainBoard.png" />-->
+<!--         </image>-->
+<!--         <viewport>-->
+<!--            <Rectangle2D />-->
+<!--         </viewport>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="board_right" fitHeight="288.0" fitWidth="120.0" layoutX="834.0" layoutY="130.0"-->
+<!--                 pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/board_Le_Ri.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="board_up" fitHeight="62.0" fitWidth="394.0" layoutX="308.0" layoutY="14.0"-->
+<!--                 pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/boardAgainst.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="board_left" fitHeight="288.0" fitWidth="120.0" layoutX="14.0" layoutY="157.0"-->
+<!--                 pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/board_Le_Ri.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <Button fx:id="welcomeText" layoutX="436.0" layoutY="348.0" mnemonicParsing="false" text="Button" />-->
+<!--      <ImageView fx:id="mainBoard" fitHeight="141.0" fitWidth="617.0" layoutX="168.0" layoutY="463.0"-->
+<!--                 pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/MyBoard.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="oneY" fitHeight="62.0" fitWidth="52.0" layoutX="705.0" layoutY="478.0"-->
+<!--                 pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/9-black.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="602.0" layoutY="187.0"-->
+<!--                 pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/6-yellow.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="deckI" fitHeight="114.0" fitWidth="243.0" layoutX="89.0" layoutY="234.0"-->
+<!--                 onMouseClicked="#clickDeck" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/deckImage.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="tryc" fitHeight="62.0" fitWidth="52.0" layoutX="107.0" layoutY="260.0"-->
+<!--                 pickOnBounds="true" preserveRatio="true" visible="false">-->
+<!--         <image>-->
+<!--            <Image url="@images/1-yellow.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+
+<!--      &lt;!&ndash; הוספת StackPane &ndash;&gt;-->
+<!--      <StackPane fx:id="cardStackPane" layoutX="300" layoutY="300" />-->
+<!--   </children>-->
+<!--</AnchorPane>-->
